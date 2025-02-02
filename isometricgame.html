@@ -15,47 +15,58 @@
     <link rel="shortcut icon" href="https://www.raylib.com/favicon.ico">
     
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        canvas.emscripten {
-            border: none;
-            background-color: #000;
-            display: block;
-            margin: auto;
-        }
-        h1 {
-            font-size: 1.8em;
-        }
-        p {
-            font-size: 1.2em;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 1.2em;
-            text-decoration: none;
-            background-color: #333;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-        }
-        a:hover {
-            background-color: #555;
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5em;
-            }
-            p, a {
-                font-size: 1em;
-            }
-        }
+body {
+    margin: 0;
+    overflow-y: auto; /* Allow vertical scrolling */
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh; /* Ensure the body takes at least full viewport height */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+}
+
+canvas.emscripten {
+    border: none;
+    background-color: #000;
+    display: block;
+    margin: auto;
+    flex-grow: 1; /* Allow the canvas to take available space */
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #555;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    p, a {
+        font-size: 1em;
+    }
+}
     </style>
     
     <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/dist/FileSaver.min.js"></script>
