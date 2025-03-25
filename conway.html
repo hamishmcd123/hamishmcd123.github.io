@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Conway's Game of Life</title>
+    
+    <meta name="title" content="Raylib Web Game">
+    <meta name="description" content="New Raylib web videogame, developed using Raylib videogames library">
+    <meta name="keywords" content="raylib, programming, examples, html5, C, C++, library, learn, games, videogames">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://www.raylib.com/favicon.ico">
+    
+    <style>
+body {
+    margin: 0;
+    overflow-y: auto; /* Allow vertical scrolling */
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh; /* Ensure the body takes at least full viewport height */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+}
+
+canvas.emscripten {
+    border: none;
+    background-color: #000;
+    display: block;
+    margin: auto;
+    flex-grow: 1; /* Allow the canvas to take available space */
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #555;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    p, a {
+        font-size: 1em;
+    }
+}
+    </style>
+    
+    <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js/dist/FileSaver.min.js"></script>
+    <script>
+        function saveFileFromMEMFSToDisk(filename, saveAsName) {
+            var fileData = FS.readFile(filename);
+            var blob = new Blob([fileData.buffer], { type: "application/octet-binary" });
+            saveAs(blob, saveAsName);
+        }
+    </script>
+</head>
+<body>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    <p id="output"></p>
+    
+    <script>
+        var Module = {
+            print: (function() {
+                var outputElement = document.getElementById("output");
+                if (outputElement) outputElement.value = "";
+                return function(text) {
+                    if (arguments.length > 1) {
+                        text = Array.prototype.slice.call(arguments).join(" ");
+                    }
+                    console.log(text);
+                    if (outputElement) {
+                        outputElement.value += text + "\n";
+                        outputElement.scrollTop = outputElement.scrollHeight;
+                    }
+                };
+            })(),
+            canvas: document.getElementById("canvas")
+        };
+    </script>
+    <script src="conway.js" async></script>
+
+    <h1>CONTROLS</h1>
+    <p>C - Clear all</p>
+    <p>G - GO!</p>
+    <p>LMB - Place cell</p>
+    <p>RMB - Delete cell</p>
+    <p>P - Pause</p>
+    <a href="raylibexamples.html">BACK</a>
+    
+</body>
+</html>
